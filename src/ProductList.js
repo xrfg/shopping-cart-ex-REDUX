@@ -1,14 +1,15 @@
-import React, { useContext } from "react";
-import { MyContext } from "./App";
+import React from "react";
 import Product from "./Product";
+import { connect } from "react-redux";
 
-export default function ProductList() {
-  const { products } = useContext(MyContext);
+function ProductList(props) {
   return (
     <ul>
-      {products.map((item) => {
-        return <Product item={item} />;
+      {props.products.map((item) => {
+        return <Product key={item.id} item={item} />;
       })}
     </ul>
   );
 }
+
+export default connect((state) => state)(ProductList);
